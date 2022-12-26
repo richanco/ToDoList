@@ -69,5 +69,37 @@ public class ToDoListDAO {
 		return true;
 		
 	}
+	public  ToDo findById(int id) { ///voidは後で修正
+		ToDo todo = null;
+
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			//データベース接続
+			con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/todolist", "root", "chanrihomaromaro14");
+			
+			String sql = "select * from task where id = ?;";
+			PreparedStatement pStmt = con.prepareStatement(sql);
+			
+			//値をセットする
+			pStmt.setInt(1, id);
+			//値を受け取る
+			ResultSet result = pStmt.executeQuery();
+			
+			//データベースのデータ取得
+			while (result.next()) {
+				String name = result.getString("name");
+				int progress = result.getInt("progress");
+				todo = new ToDo(id, name, progress);
+			}
+			if (con != null) {
+				con.close();
+			}
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+			System.out.println("接続に失敗しました。");
+		}
+		return todo;
+	}
 
 }

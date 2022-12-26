@@ -16,17 +16,19 @@ List<ToDo> list = (List<ToDo>) request.getAttribute("toDoList");
 <h1>ToDoList</h1>
 <body>
 	<form action="ToDoListServlet" method="post">
-		<input type="text" name="todo">
-		<input type="submit" value="add">
+		Add List <input type="text" name="todo">
+		       <input type="submit" value="add">
     </form>
 	<%
 	for (int i = 0; i < list.size(); i++) {
 	%>
+	 <a href="ToDoEditServlet?id=<%= list.get(i).getId()%>" >
 	<%=list.get(i).getId()%>
 	<%=list.get(i).getName()%>
 	<%=list.get(i).getProgress()%><br>
 	<%
 	}
 	%>
+	</a>
 </body>
 </html>
