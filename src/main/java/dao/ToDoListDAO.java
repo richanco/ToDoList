@@ -48,28 +48,29 @@ public class ToDoListDAO {
 		try {
 			//データベース接続
 			con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/todolist", "root", "chanrihomaromaro14");
-			
+
 			//INSERT文の準備
 			String sql = "INSERT INTO task(name) VALUES (?) ;";
 			PreparedStatement pStmt = con.prepareStatement(sql);
-			
+
 			//INSERT文中の「？」に使用する値を設定しSQLを設定
 			pStmt.setString(1, todo);
-		    
+
 			//INSERT文を実行
-		    int result = pStmt.executeUpdate();
-		    if(result !=1) {
-		    	return false;
-		    }
+			int result = pStmt.executeUpdate();
+			if (result != 1) {
+				return false;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("接続に失敗しました");
 			return false;
 		}
 		return true;
-		
+
 	}
-	public  ToDo findById(int id) { ///voidは後で修正
+
+	public ToDo findById(int id) { ///voidは後で修正
 		ToDo todo = null;
 
 		try {
@@ -77,15 +78,15 @@ public class ToDoListDAO {
 
 			//データベース接続
 			con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/todolist", "root", "chanrihomaromaro14");
-			
+
 			String sql = "select * from task where id = ?;";
 			PreparedStatement pStmt = con.prepareStatement(sql);
-			
+
 			//値をセットする
 			pStmt.setInt(1, id);
 			//値を受け取る
 			ResultSet result = pStmt.executeQuery();
-			
+
 			//データベースのデータ取得
 			while (result.next()) {
 				String name = result.getString("name");
@@ -100,6 +101,31 @@ public class ToDoListDAO {
 			System.out.println("接続に失敗しました。");
 		}
 		return todo;
+	}
+
+	public void updateStatus(int status,int id) { ///voidは後で修正
+
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			//データベース接続
+			con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/todolist", "root", "chanrihomaromaro14");
+
+			String sql = "update task set Progress = ? where id = ? ";
+			PreparedStatement pStmt = con.prepareStatement(sql);
+
+			//値をセットする
+			pStmt.setInt(1, status);
+			pStmt.setInt(2, id);
+
+			//update文を実行する
+			int result = pStmt.executeUpdate();
+
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+			System.out.println("接続に失敗しました。");
+
+		}
 	}
 
 }

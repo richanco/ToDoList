@@ -11,14 +11,16 @@ List<ToDo> list = (List<ToDo>) request.getAttribute("toDoList");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ToDoList</title>
+<title>ToDo</title>
 </head>
 <h1>ToDoList</h1>
 <body>
+    <hr>
 	<form action="ToDoListServlet" method="post">
 		Add List <input type="text" name="todo">
 		       <input type="submit" value="add">
     </form>
+    <hr>
 	<%
 	for (int i = 0; i < list.size(); i++) {
 	%>

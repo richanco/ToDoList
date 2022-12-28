@@ -6,9 +6,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ToDO</title>
 </head>
 <body>
-  <h1><%= todo.getId() %><%= todo.getName() %><%= todo.getProgress() %></h1>
+  <h1>ToDo-Edit</h1>
+  <hr>
+  <form action="ToDoEditServlet" method="POST">
+  ID : <input type="hidden" value="<%= todo.getId() %>" name="id"><br>
+  TASK : <%= todo.getName() %><br>
+  PROGRESS : <select name="status">
+            <% if(0 == todo.getProgress()){ %>
+            <option selected >0</option>
+            <option  >1</option>
+            <option  >2</option>
+            <% }else if(1 == todo.getProgress()){ %>
+            <option  >0</option>
+            <option selected >1</option>
+            <option  >2</option>
+            <% } else { %>
+            <option  >0</option>
+            <option >1</option>
+            <option selected>2</option>
+            <% }  %>
+            </select><br>
+  <hr>
+  UPDATE  <input type="submit">
+  <a href="ToDoListServlet">BACK</a>
+  </form>         
 </body>
 </html>

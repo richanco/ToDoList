@@ -60,18 +60,6 @@ public class ToDoListServlet extends HttpServlet {
 		}
 		
 		response.sendRedirect("/ToDoList/ToDoListServlet");
-//		//データベースに接続準備
-//				ToDoListDAO todolistDAO = new ToDoListDAO();
-//				//ToDoListの一覧取得
-//				List<ToDo> list = todolistDAO.findAll();
-//				
-//			    //スコープにインスタンスを保存
-//				request.setAttribute("toDoList", list);
-//
-//		//JSPにフォワードする
-//				RequestDispatcher dispatcher =
-//						request.getRequestDispatcher("/WEB-INF/todolist.jsp");
-//				dispatcher.forward(request, response);
 	}
 
 }
