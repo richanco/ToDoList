@@ -21,16 +21,21 @@ List<ToDo> list = (List<ToDo>) request.getAttribute("toDoList");
 		       <input type="submit" value="add">
     </form>
     <hr>
-	<%
-	for (int i = 0; i < list.size(); i++) {
-	%>
-	 <a href="ToDoEditServlet?id=<%= list.get(i).getId()%>" >
-	<%=list.get(i).getId()%>
-	<%=list.get(i).getName()%>
-	<%=list.get(i).getProgress()%><br>
-	<%
-	}
-	%>
-	</a>
-</body>
+    <table border="1">
+       <tr>
+          <th>ID</th>
+          <th>TASK</th>
+          <th>STATUS</th>
+       </tr>
+        <% for (int i = 0; i < list.size(); i++) { %>
+        
+       <tr>
+          <td><%=list.get(i).getId()%></td>
+          <td><a href="ToDoEditServlet?id=<%= list.get(i).getId()%>" ><%=list.get(i).getName()%></a></td>
+          <td><%=list.get(i).getProgress()%><br></td>
+       </tr>
+       
+       <%   } %>
+    </table>
+ </body>
 </html>

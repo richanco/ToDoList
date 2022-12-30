@@ -30,7 +30,8 @@
             <% }  %>
             </select><br>
   <hr>
-  UPDATE  <input type="submit">
+  <input type="submit" value="DELETE">
+  <input type="submit" value="UPDATE"><br>
   <a href="ToDoListServlet">BACK</a>
   </form>         
 </body>
