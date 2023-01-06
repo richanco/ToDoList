@@ -12,7 +12,7 @@
   <h1>ToDo-Edit</h1>
   <hr>
   <form action="ToDoEditServlet" method="POST">
-  ID : <input type="hidden" value="<%= todo.getId() %>" name="id"><br>
+  ID : <input type="hidden" value="<%= todo.getId() %>" name="id"><%= todo.getId() %><br>
   TASK : <%= todo.getName() %><br>
   PROGRESS : <select name="status">
             <% if(0 == todo.getProgress()){ %>
@@ -30,9 +30,10 @@
             <% }  %>
             </select><br>
   <hr>
-  <input type="submit" value="DELETE">
-  <input type="submit" value="UPDATE"><br>
+  <input type="submit" value="UPDATE">
+  <button type="submit" formaction="ToDoDeleteServlet">DELETE</button>
+  </form>
   <a href="ToDoListServlet">BACK</a>
-  </form>         
+           
 </body>
 </html>

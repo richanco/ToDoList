@@ -127,5 +127,28 @@ public class ToDoListDAO {
 
 		}
 	}
+	public void deleteTask(int id) { ///voidは後で修正
+
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			//データベース接続
+			con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/todolist", "root", "chanrihomaromaro14");
+
+			String sql = "delete from task where id = ?";
+			PreparedStatement pStmt = con.prepareStatement(sql);
+
+			//値をセットする
+			pStmt.setInt(1, id);
+			
+			//delete文を実行する
+			int result = pStmt.executeUpdate();
+
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+			System.out.println("接続に失敗しました。");
+
+		}
+	}
 
 }
